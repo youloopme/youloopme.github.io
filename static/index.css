@@ -1,0 +1,33 @@
+section {
+    margin: 15px auto;
+}
+
+@media (min-width: 800px) {
+    section {
+        width: 640px;
+    }
+}
+
+@media (min-width: 1024px) {
+    section {
+        width: 960px;
+    }
+}
+
+@media (min-width: 1280px) {
+    section {
+        width: 1024px;
+    }
+}
+
+@media (min-width: 1440px) {
+    section {
+        width: 1280px;
+    }
+}
+
+@media (min-width: 1600px) {
+    section {
+        width: 1440px;
+    }
+}
