@@ -1,3 +1,70 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #e74c3c;
+    padding: 10px;
+}
+
+form {
+    display: box;
+    display: -moz-box;
+    display: -webkit-box;
+    width: 100%
+}
+
+input, button {
+    margin: 10px 0 10px 0;
+    padding: 10px;
+
+    background: none;
+    border-left: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    border-right: none;
+    border-top: none;
+
+    font-size: 20px;
+    height: 100%;
+}
+
+input {
+    -moz-box-flex: 1;
+    -webkit-box-flex: 1;
+    box-flex: 1;
+
+    margin-right: 20px;
+}
+
+button {
+    cursor: pointer;
+    position: relative;
+    -moz-box-flex: none;
+    -webkit-box-flex: none;
+    box-flex: none;
+}
+
+button:before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 0;
+    left: 0;
+    bottom: 0;
+    background : #fff;
+    opacity: 0.3;
+    transition: all .3s;
+}
+
+button:hover:before {
+    width: 100%;
+}
+
+#form_section {
+    margin: 0 auto;
+}
+
 section {
     margin: 15px auto;
 }
@@ -6,10 +73,16 @@ section {
     section {
         width: 640px;
     }
+    #form_section {
+        width: 640px;
+    }
 }
 
 @media (min-width: 1024px) {
     section {
+        width: 960px;
+    }
+    #form_section {
         width: 960px;
     }
 }
@@ -18,16 +91,25 @@ section {
     section {
         width: 1024px;
     }
+    #form_section {
+        width: 1024px;
+    }
 }
 
 @media (min-width: 1440px) {
     section {
         width: 1280px;
     }
+    #form_section {
+        width: 1280px;
+    }
 }
 
 @media (min-width: 1600px) {
     section {
+        width: 1440px;
+    }
+    #form_section {
         width: 1440px;
     }
 }

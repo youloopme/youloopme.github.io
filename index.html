@@ -7,10 +7,12 @@
 </head>
 <body onload="loadYoutubeApi()" onresize="resizePlayer()">
 <header>
-    <form onsubmit="return loopme()">
-        <input type="text" name="url">
-        <input type="submit" value="Loop Me!">
-    </form>
+    <div id="form_section">
+        <form onsubmit="return loopme()">
+            <input type="text" name="url" placeholder="Youtube video url">
+            <button type="submit" class="submit">Loop Me!</button>
+        </form>
+    </div>
 </header>
 <section>
     <article>
