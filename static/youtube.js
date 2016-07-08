@@ -1,11 +1,3 @@
-function loadYoutubeApi() {
-    var tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-}
-
 var player = null;
 function createPlayerWithVideoId(id) {
     player = new YT.Player('player', {
@@ -37,12 +29,12 @@ function loadVideo(id) {
     } else {
         player.loadVideoById(id);
     }
+    getUrlInputElement().value = getYoutubeUrl(id);
 }
 
 function resizePlayer() {
     if (player != null) {
         var section = document.getElementsByTagName("section")[0];
-        section.clientWidth;
         player.setSize(section.clientWidth, section.clientWidth * 9 / 16);
     }
 }
