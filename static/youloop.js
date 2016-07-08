@@ -16,3 +16,11 @@ function loopme() {
     loadVideo(id);
     return false;
 }
+
+window.onload = function() {
+    loadYoutubeApi();
+}
+
+window.onresize = function() {
+    resizePlayer();
+}
