@@ -1,7 +1,7 @@
 var player = null;
-function createPlayerWithVideoId(id) {
+function createPlayerWithVideoId(videoId) {
     player = new YT.Player('player', {
-        videoId: id,
+        videoId: videoId,
         events: {
             'onStateChange': onPlayerStateChange
         },
@@ -23,13 +23,13 @@ function onPlayerStateChange(event) {
     }
 }
 
-function loadVideo(id) {
+function loadVideo(videoId) {
     if (player == null) {
-        createPlayerWithVideoId(id);
+        createPlayerWithVideoId(videoId);
     } else {
-        player.loadVideoById(id);
+        player.loadVideoById(videoId);
     }
-    getUrlInputElement().value = getYoutubeUrl(id);
+    getUrlInputElement().value = getYoutubeUrl(videoId);
 }
 
 function resizePlayer() {

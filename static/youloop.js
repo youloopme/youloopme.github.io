@@ -1,17 +1,17 @@
-function getYoutubeId(url) {
-    var id = '';
+function getYoutubeVideoId(url) {
+    var videoId = '';
     url = url.replace(/(>|<)/gi, '').split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
     if (url[2] !== undefined) {
-        id = url[2].split(/[^0-9a-z_\-]/i);
-        id = id[0];
+        videoId = url[2].split(/[^0-9a-z_\-]/i);
+        videoId = videoId[0];
     } else {
-        id = url;
+        videoId = url;
     }
-    return id;
+    return videoId;
 }
 
-function getYoutubeUrl(id) {
-    return "http://www.youtube.com/watch?v=" + id;
+function getYoutubeUrl(videoId) {
+    return "http://www.youtube.com/watch?v=" + videoId;
 }
 
 function getUrlInputElement() {
@@ -20,14 +20,15 @@ function getUrlInputElement() {
 
 function loopme() {
     var url = getUrlInputElement().value;
-    var id = getYoutubeId(url);
-    loadVideo(id);
-    window.history.pushState(id, id, "#" + id);
+    var videoId = getYoutubeVideoId(url);
+    loadVideo(videoId);
+    window.history.pushState(videoId, videoId, "#" + videoId);
     return false;
 }
 
+var defaultVideoId = 'DHluLVJuAJ0';
 window.onload = function () {
-    var videoId = 'DHluLVJuAJ0';
+    var videoId = defaultVideoId;
     var hash = window.location.hash
     if (hash) {
         videoId = hash.split('#')[1]
@@ -41,7 +42,8 @@ window.onresize = function () {
 
 window.addEventListener('popstate', function (event) {
     var videoId = event.state;
-    if (videoId) {
-        loadVideo(videoId);
+    if (!videoId) {
+        videoId = defaultVideoId;
     }
+    loadVideo(videoId);
 });
