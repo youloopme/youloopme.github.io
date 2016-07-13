@@ -8,57 +8,69 @@ header {
     padding: 10px;
 }
 
+header a {
+    text-decoration: none;
+}
+
 form {
-    display: box;
-    display: -moz-box;
-    display: -webkit-box;
+    display: flex;
     width: 100%
 }
 
-input, button {
+form > * {
     margin: 10px 0 10px 0;
     padding: 10px;
 
     background: none;
-    border-left: 1px solid #fff;
+    border: none;
     border-bottom: 1px solid #fff;
-    border-right: none;
-    border-top: none;
 
+    color: white;
     font-size: 20px;
     height: 100%;
 }
 
-input {
-    -moz-box-flex: 1;
-    -webkit-box-flex: 1;
-    box-flex: 1;
-
-    margin-right: 20px;
+form a {
+    border-right: 1px solid #fff;
 }
 
-button {
+form input {
+    flex-grow: 1;
+    margin-right: 20px;
+    margin-left: 20px;
+    text-align: center;
+}
+
+form button {
+    border-left: 1px solid #fff;
+}
+
+.submit {
     cursor: pointer;
     position: relative;
-    -moz-box-flex: none;
-    -webkit-box-flex: none;
-    box-flex: none;
 }
 
-button:before {
+.submit:before {
     content: "";
     position: absolute;
     height: 100%;
     width: 0;
-    left: 0;
     bottom: 0;
     background : #fff;
     opacity: 0.3;
     transition: all .3s;
 }
 
-button:hover:before {
+.submit:hover:before {
     width: 100%;
+}
+
+form button:before {
+    left: 0;
+}
+
+form a:before {
+    right: 0;
 }
 
 #form_section {
