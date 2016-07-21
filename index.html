@@ -8,6 +8,16 @@
     <link href="static/index.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<script src="http://connect.facebook.net/en_US/sdk.js" id="facebook-jssdk"></script>
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '1106836436053260',
+            xfbml      : false,
+            version    : 'v2.7'
+        });
+    };
+</script>
 <header>
     <div id="form_section">
         <form onsubmit="return loopme()">
@@ -48,5 +58,6 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/autolinker/0.27.0/Autolinker.min.js"></script>
 <script type="text/javascript" src="static/youtube.js"></script>
 <script type="text/javascript" src="static/youloop.js"></script>
+<script type="text/javascript" src="https://platform.twitter.com/widgets.js"></script>
 </body>
 </html>

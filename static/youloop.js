@@ -14,6 +14,16 @@ function getYoutubeUrl(videoId) {
     return "http://www.youtube.com/watch?v=" + videoId;
 }
 
+function getYoutubeThumbnail() {
+    var videoId = player.getVideoData().video_id;
+
+    if (videoId.length == 11) {
+        return "https://img.youtube.com/vi/" + videoId + "/maxresdefault.jpg";
+    }
+
+    return "https://www.youtube.com/yt/brand/media/image/YouTube-icon-full_color.png";
+}
+
 function getUrlInputElement() {
     return document.querySelector("input[name=url]");
 }
@@ -22,6 +32,7 @@ function loopme() {
     var url = getUrlInputElement().value;
     var videoId = getYoutubeVideoId(url);
     loadVideo(videoId);
+    window.history.pushState(videoId, videoId, "#" + videoId);
     return false;
 }
 
@@ -31,6 +42,8 @@ window.onload = function () {
     var hash = window.location.hash
     if (hash) {
         videoId = hash.split('#')[1]
+    } else {
+        window.history.replaceState(videoId, videoId, "#" + videoId);
     }
     loadVideo(videoId);
 };
@@ -46,3 +59,22 @@ window.addEventListener('popstate', function (event) {
     }
     loadVideo(videoId);
 });
+
+document.getElementById('facebook_sharer').onclick = function() {
+    var url = window.location.href;
+    var title = document.getElementById("video_title").textContent;
+    FB.ui({
+        appId: '1106836436053260',
+        method: 'feed',
+        link: url,
+        name: title,
+        picture: getYoutubeThumbnail(),
+    }, function(response){});
+    return false;
+}
+
+document.getElementById('twitter_sharer').onclick = function() {
+    var url = encodeURIComponent(window.location.href);
+    var title = encodeURIComponent(document.getElementById("video_title").textContent);
+    document.getElementById("twitter_sharer").href = "https://twitter.com/intent/tweet?url=" + url + "&text=" + title;
+}
