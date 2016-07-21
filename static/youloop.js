@@ -68,10 +68,18 @@ function onPlayerReady(event) {
 }
 
 function onPlayerStateChange(event) {
-    if (event.data == YT.PlayerState.ENDED) {
-        event.target.playVideo();
-        updateViewCounter(++viewCounter);
-    }
+    switch (event.data) {
+        case YT.PlayerState.PLAYING:
+            if (cleanTime() == 0) {
+                ga('send', 'event', 'video', 'started', document.getElementById("video_title").textContent + " - " + player.getVideoData()['video_id']);
+            }
+            break;
+        case YT.PlayerState.ENDED: {
+            updateViewCounter(++viewCounter);
+            event.target.playVideo();
+            break;
+        }
+    };
 }
 
 function loadVideo(videoId) {
@@ -97,12 +105,11 @@ function retrieveVideoInformations(videoId) {
     getUrlInputElement().value = url;
     var xmlHttp = new XMLHttpRequest();
 
-
     xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState != 4 || xmlHttp.status != 200) return;
         var response = JSON.parse(xmlHttp.responseText);
 
-        var tabTitle = document.getElementsByTagName("title")[0];
+        var tagTitle = document.getElementsByTagName("title")[0];
 
         var video_title = document.getElementById("video_title");
         var channel_title = document.getElementById("channel_title");
@@ -110,14 +117,14 @@ function retrieveVideoInformations(videoId) {
         var view_count = document.getElementById("view_count");
         var title = response.items[0].snippet.title;
 
-        tabTitle.textContent = title + " - YooLoop.Me";
+        tagTitle.textContent = title + " - YooLoop.Me";
 
         video_title.textContent = title;
         channel_title.textContent = response.items[0].snippet.channelTitle;
         description.innerHTML = autolinker.link(response.items[0].snippet.description.split("\n").join("<br>"));;
         view_count.textContent = response.items[0].statistics.viewCount;
-
     };
+
     xmlHttp.open("GET", "https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,contentDetails&id=" + videoId + "&key=" + API_KEY, true);
     xmlHttp.send(null);
 }
