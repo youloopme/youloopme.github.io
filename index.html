@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Loop Youtube Videos - YouLoop.Me</title>
-    <link href="static/index.css" rel="stylesheet">
+    <link href="https://opensource.keycdn.com/fontawesome/4.6.3/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,700" rel="stylesheet" type="text/css">
+    <link href="static/index.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <header>
@@ -18,10 +20,32 @@
 <section>
     <article>
         <div id="player"></div>
+        <div class="info row">
+            <div class="share">
+                <span>Share</span>
+                <a target="_blank" id="facebook_sharer" href="#"><i class="fa fa-facebook-square" aria-hidden="true" style="font-size:1.5em; color:#3C599F;"></i></a>
+                <a target="_blank" id="twitter_sharer" href="#"><i class="fa fa-twitter-square" aria-hidden="true" style="font-size:1.5em; color:#32CCFE;"></i></a>
+            </div>
+            <div>
+                <span id="looped">1</span>
+                <i class="fa fa-refresh" aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="info column">
+            <div id="header">
+                <div id="titles">
+                    <h3 id="video_title"></h3>
+                    <span id="channel_title"></span>
+                </div>
+                <div><span id="view_count"></span><i class="fa fa-eye" aria-hidden="true"></i></div>
+            </div>
+            <div id="description"></div>
+        </div>
     </article>
     </div>
 </section>
 <script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/autolinker/0.27.0/Autolinker.min.js"></script>
 <script type="text/javascript" src="static/youtube.js"></script>
 <script type="text/javascript" src="static/youloop.js"></script>
 </body>

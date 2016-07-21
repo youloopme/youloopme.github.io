@@ -22,7 +22,6 @@ function loopme() {
     var url = getUrlInputElement().value;
     var videoId = getYoutubeVideoId(url);
     loadVideo(videoId);
-    window.history.pushState(videoId, videoId, "#" + videoId);
     return false;
 }
 

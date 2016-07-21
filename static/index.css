@@ -1,6 +1,11 @@
 body {
     margin: 0;
     padding: 0;
+    background-color: #f1f1f1;
+}
+
+body * {
+    font-family: 'Roboto', "Arial", sans-serif;
 }
 
 header {
@@ -78,15 +83,61 @@ form a:before {
 }
 
 section {
-    margin: 15px auto;
+    margin: 0px auto;
+}
+
+section article > * {
+    margin: 15px 0 0 0;
+}
+
+.info {
+    display: flex;
+    box-sizing: border-box;
+    box-shadow: 0 1px 2px rgba(0,0,0,.1);
+    padding: 15px;
+    background-color: white;
+}
+
+.info.column {
+flex-direction: column;
+}
+
+.info.row {
+    flex-direction: row;
+}
+
+.info * {
+    margin: 0;
+    vertical-align: middle;
+}
+
+.info .share {
+    flex: 1;
+}
+
+.info #header {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 15px;
+}
+
+.info #header #titles {
+    flex: 1;
+}
+
+.info #channel_title:before {
+    content: "by ";
+}
+.info #view_count {
+    margin-right: 5px;
 }
 
 @media (min-width: 800px) {
     section {
-        width: 640px;
+        width: 720px;
     }
     #form_section {
-        width: 640px;
+        width: 720px;
     }
 }
 
