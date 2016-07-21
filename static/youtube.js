@@ -1,6 +1,7 @@
 var API_KEY = 'AIzaSyA8KODtHIz7Ho81CXxNygl6jphDZDxmpfQ';
 var autolinker = new Autolinker({email: false, phone: false, twitter: false});
 var player = null;
+var viewCounter = 0;
 
 function createPlayerWithVideoId(videoId) {
     player = new YT.Player('player', {
@@ -23,11 +24,13 @@ function createPlayerWithVideoId(videoId) {
 
 function onPlayerReady(event) {
     retrieveVideoInformations(player.getVideoData().video_id)
+    updateViewCounter();
 }
 
 function onPlayerStateChange(event) {
     if (event.data == YT.PlayerState.ENDED) {
         event.target.playVideo();
+        updateViewCounter();
     }
 }
 
@@ -38,6 +41,12 @@ function loadVideo(videoId) {
     createPlayerWithVideoId(videoId);
     window.history.pushState(videoId, videoId, "#" + videoId);
 }
+
+function updateViewCounter() {
+    viewCounter++;
+    document.getElementById("viewCounter").textContent = viewCounter;
+}
+
 function resizePlayer() {
     if (player != null) {
         var section = document.getElementsByTagName("section")[0];
