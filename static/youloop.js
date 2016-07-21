@@ -101,28 +101,20 @@ function resizePlayer() {
 }
 
 function retrieveVideoInformations(videoId) {
-    var url = getYoutubeUrl(videoId);
-    getUrlInputElement().value = url;
+    getUrlInputElement().value = getYoutubeUrl(videoId);
     var xmlHttp = new XMLHttpRequest();
 
     xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState != 4 || xmlHttp.status != 200) return;
+
         var response = JSON.parse(xmlHttp.responseText);
-
-        var tagTitle = document.getElementsByTagName("title")[0];
-
-        var video_title = document.getElementById("video_title");
-        var channel_title = document.getElementById("channel_title");
-        var description = document.getElementById("description");
-        var view_count = document.getElementById("view_count");
         var title = response.items[0].snippet.title;
 
-        tagTitle.textContent = title + " - YooLoop.Me";
-
-        video_title.textContent = title;
-        channel_title.textContent = response.items[0].snippet.channelTitle;
-        description.innerHTML = autolinker.link(response.items[0].snippet.description.split("\n").join("<br>"));;
-        view_count.textContent = response.items[0].statistics.viewCount;
+        document.getElementsByTagName("title")[0].textContent = title + " - YooLoop.Me";
+        document.getElementById("video_title").textContent = title;
+        document.getElementById("channel_title").textContent = response.items[0].snippet.channelTitle;
+        document.getElementById("description").innerHTML = autolinker.link(response.items[0].snippet.description.split("\n").join("<br>"));;
+        document.getElementById("view_count").textContent = response.items[0].statistics.viewCount;
     };
 
     xmlHttp.open("GET", "https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,contentDetails&id=" + videoId + "&key=" + API_KEY, true);
@@ -153,13 +145,11 @@ window.addEventListener('popstate', function (event) {
 });
 
 document.getElementById('facebook_sharer').onclick = function() {
-    var url = window.location.href;
-    var title = document.getElementById("video_title").textContent;
     FB.ui({
         appId: '1106836436053260',
         method: 'feed',
-        link: url,
-        name: title,
+        link: window.location.href,
+        name: document.getElementById("video_title").textContent,
         picture: getYoutubeThumbnail(),
     }, function(response){});
     return false;
