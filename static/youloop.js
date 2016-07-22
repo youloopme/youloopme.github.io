@@ -34,6 +34,10 @@ function getUrlInputElement() {
     return document.querySelector("input[name=url]");
 }
 
+function getCleanTime() {
+    return Math.round(player.getCurrentTime())
+}
+
 function loopme() {
     var url = getUrlInputElement().value;
     var videoId = getYoutubeVideoId(url);
@@ -70,7 +74,7 @@ function onPlayerReady(event) {
 function onPlayerStateChange(event) {
     switch (event.data) {
         case YT.PlayerState.PLAYING:
-            if (cleanTime() == 0) {
+            if (getCleanTime() == 0) {
                 ga('send', 'event', 'video', 'started', document.getElementById("video_title").textContent + " - " + player.getVideoData()['video_id']);
             }
             break;
