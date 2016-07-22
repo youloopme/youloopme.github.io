@@ -24,7 +24,7 @@ function getYoutubeThumbnail() {
     var videoId = player.getVideoData().video_id;
 
     if (videoId.length == 11) {
-        return "https://img.youtube.com/vi/" + videoId + "/maxresdefault.jpg";
+        return "https://img.youtube.com/vi/" + videoId + "/0.jpg";
     }
 
     return "https://www.youtube.com/yt/brand/media/image/YouTube-icon-full_color.png";
